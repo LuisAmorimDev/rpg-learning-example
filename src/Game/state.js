@@ -2,8 +2,8 @@ const fs = require('fs');
 const util = require('util');
 const events = require("events");
 const path = require('path');
-const EventTypes = require("./EventTypes");
-const package = require('./package.json');
+const EventTypes = require("../utils/EventTypes");
+const package = require('../../package.json');
 
 // We want to save our state in a directory where we will have write/read
 // access. Each platform has a slightly different directory, so we handle
@@ -12,19 +12,19 @@ const package = require('./package.json');
 const getPath = () => {
     switch (process.platform) {
         case "darwin": {
-          return path.join(process.env.HOME, "Library", "Application Support", package.name);
+            return path.join(process.env.HOME, "Library", "Application Support", package.name);
         }
         case "win32": {
-          return path.join(process.env.APPDATA, package.name);
+            return path.join(process.env.APPDATA, package.name);
         }
         case "linux": {
-          return path.join(process.env.HOME, `.${package.name}`);
+            return path.join(process.env.HOME, `.${package.name}`);
         }
         default: {
-          console.log("This platform is not supported for file system storage.");
-          process.exit(1);
+            console.log("This platform is not supported for file system storage.");
+            process.exit(1);
         }
-      }
+    }
 }
 
 class FileSystemState extends events.EventEmitter {

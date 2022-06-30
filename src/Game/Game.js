@@ -2,10 +2,10 @@ const events = require('events');
 const Machine = require('xstate').Machine;
 const assign = require('xstate').assign;
 const interpret = require('xstate').interpret;
-const Character = require('./Character');
-const ActionTypes = require('./ActionTypes');
-const EventTypes = require("./EventTypes");
-const SentimentTypes = require("./SentimentTypes");
+const Character = require('./Player/Character');
+const ActionTypes = require('../utils/ActionTypes');
+const EventTypes = require("../utils/EventTypes");
+const SentimentTypes = require("../utils/SentimentTypes");
 
 let machine;
 let game;
@@ -153,18 +153,19 @@ function createGame(gameState) {
                             entry: [
                                 // Send our main menu prompt to the interface which is the list
                                 // of actions that the player can select from a list.
-                                (context, event) => context.game.emit(EventTypes.PROMPTS, [
-                                    {
-                                        key: 'main',
-                                        type: 'list',
-                                        choices: [
-                                            ActionTypes.FIGHT_ENEMY,
-                                            ActionTypes.REST,
-                                            ActionTypes.VIEW_CHARACTER,
-                                            ActionTypes.VIEW_INVENTORY
-                                        ]
-                                    }
-                                ]),
+                                (context, event) =>
+                                    context.game.emit(EventTypes.PROMPTS, [
+                                        {
+                                            key: 'main',
+                                            type: 'list',
+                                            choices: [
+                                                ActionTypes.FIGHT_ENEMY,
+                                                ActionTypes.REST,
+                                                ActionTypes.VIEW_CHARACTER,
+                                                ActionTypes.VIEW_INVENTORY
+                                            ]
+                                        }
+                                    ]),
                             ]
                         },
                         combat: {

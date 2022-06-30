@@ -4,7 +4,7 @@ function Character(name, profession, gold, health, maxHealth, attack, level, xp,
     this.level = level || 1;
     this.xp = xp || 0;
     this.nextLevelAt = nextLevelAt || 100;
-    this.inventory = inventory || new Inventory();
+    this.inventory = new Inventory(inventory);
 
 
     switch (profession) {
@@ -64,10 +64,10 @@ Character.prototype.viewCharacter = function () {
     };
 }
 
-function Inventory() {
-    this.maxSlots = 10;
-    this.freeSlots = 10;
-    this.items = [];
+function Inventory(inventory) {
+    this.maxSlots = inventory.maxSlots || 10;
+    this.freeSlots = inventory.freeSlots || 10;
+    this.items = inventory.items || [];
 }
 
 Inventory.prototype.addItem = function (item) {

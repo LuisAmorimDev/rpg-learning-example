@@ -4,10 +4,10 @@
  * recover character health by resting, at the cost of gold.
  */
 
-const Game = require("./Game");
+const Game = require("./Game/Game");
 const { CommandLineInterface, ElectronInterface } = require("./interface");
-const { FileSystemState } = require("./state");
-const EventTypes = require('./EventTypes');
+const { FileSystemState } = require("./Game/state");
+const EventTypes = require('./utils/EventTypes');
 
 let interface;
 if (process.argv[2] === "cli") {

@@ -2,9 +2,9 @@ const events = require("events");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const { app, BrowserWindow, ipcMain } = require('electron');
-const EventTypes = require("./EventTypes");
-const SentimentTypes = require("./SentimentTypes");
-const messageMap = require("./messageMap");
+const EventTypes = require("./utils/EventTypes");
+const SentimentTypes = require("./utils/SentimentTypes");
+const messageMap = require("./utils/messageMap");
 
 const promptMessageMap = new Map([
     ["name", "What is your name?"],
@@ -131,11 +131,12 @@ class ElectronInterface extends events.EventEmitter {
                 width: 800,
                 height: 600,
                 webPreferences: {
-                    nodeIntegration: true
+                    nodeIntegration: true,
+                    contextIsolation: false
                 }
             });
 
-            this.win.loadFile('index.html');
+            this.win.loadFile('src/index.html');
 
             this.win.webContents.on('did-finish-load', () => {
                 this.emit(EventTypes.INTERFACE_READY);
