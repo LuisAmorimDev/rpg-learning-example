@@ -14,17 +14,19 @@ The latest release can be downloaded [here!](https://github.com/skillsreactor/rp
 
 ## Table of Contents
 
-* [Installation](#installation)
+- [Installation](#installation)
 
-* [Usage](#usage)
+- [Usage](#usage)
 
-* [Media](#media)
+- [Media](#media)
 
-* [License](#license)
+- [License](#license)
 
-* [Contributing](#contributing)
+- [Contributing](#contributing)
 
-* [Questions](#questions)
+- [Questions](#questions)
+
+- [GameFeel](./src/Game/gameFeel/mainMenuPrompt.md)
 
 ## Installation
 
